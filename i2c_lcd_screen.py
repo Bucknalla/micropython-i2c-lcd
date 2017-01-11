@@ -76,7 +76,7 @@ class Screen(object):
 
         # turn on the display
         self.disp_ctrl = self.LCD_DISPLAYON | self.LCD_CURSOROFF | self.LCD_BLINKOFF
-        self.display()
+        self.display(True)
 
         # clear it
         self.clear()
@@ -97,13 +97,33 @@ class Screen(object):
         for char in text:
             self.write_char(ord(char))
 
-    def display(self):
-        self.disp_ctrl |= self.LCD_DISPLAYON
-        self.cmd(self.LCD_DISPLAYCONTROL | self.disp_ctrl)
+    def cursor(state):
+        if(state):
+            self.disp_ctrl |= self.LCD_CURSORON
+            self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
+        else():
+            elf.disp_ctrl &= ~self.LCD_CURSORON
+            self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
 
-    def nodisplay(self):
-        self.disp_ctrl &= ~self.LCD_DISPLAYON
-        self.cmd(self.LCD_DISPLAYCONTROL | self.disp_ctrl)
+    def setCursor(self, col, row):
+        col = (col | 0x80) if row == 0 else (col | 0xc0)
+        self.cmd(col)
+
+    def blink(state):
+        if(state):
+            self.disp_ctrl |= self.LCD_BLINKON
+            self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
+        else():
+            self.disp_ctrl &= ~self.LCD_BLINKON
+            self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
+
+    def display(state):
+        if(state):
+            self.disp_ctrl |= self.LCD_DISPLAYON
+            self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
+        else():
+            self.disp_ctrl &= ~self.LCD_DISPLAYON
+            self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
 
     def clear(self):
         self.cmd(self.LCD_CLEARDISPLAY)
@@ -112,7 +132,3 @@ class Screen(object):
     def home(self):
         self.cmd(self.LCD_RETURNHOME)
         time.sleep(0.002) # 2ms
-
-    def setCursor(self, col, row):
-        col = (col | 0x80) if row == 0 else (col | 0xc0)
-        self.cmd(col)

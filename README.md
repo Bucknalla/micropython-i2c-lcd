@@ -3,7 +3,13 @@
 This library is designed to support a MicroPython interface for i2c LCD character screens.
 
 ##### Compatible LCDs
-- Grove LCD RGB Backlight
+- [Grove LCD RGB Backlight](https://www.seeedstudio.com/grove-lcd-rgb-backlight-p-1643.html?cPath=34_36)
+
+##### Tested Dev Kits
+
+- LoPy
+- WiPy
+- SiPy
 
 ### Module
 

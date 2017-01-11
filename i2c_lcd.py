@@ -16,9 +16,20 @@ class Display(object):
     def write(self, text):
         self.screen.write(text)
 
+    def cursor(self, state):
+        self.screen.cursor(state)
+
+    def blink(self, state):
+        self.screen.blink(state)
+
+    def display(self, state):
+        self.screen.display(state)
+
+    def clear(self):
+        self.screen.clear()
+
     def home(self):
-        self.screen.cmd(screen.LCD_RETURNHOME)
-        time.sleep(0.002)
+        self.screen.home()
 
     def color(self, r, g, b):
         self.backlight.set_color(r, g, b)

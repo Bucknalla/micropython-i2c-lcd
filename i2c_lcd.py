@@ -22,6 +22,9 @@ class Display(object):
     def blink(self, state):
         self.screen.blink(state)
 
+    def blinkLed(self):
+        self.backlight.blinkLed()
+
     def display(self, state):
         self.screen.display(state)
 

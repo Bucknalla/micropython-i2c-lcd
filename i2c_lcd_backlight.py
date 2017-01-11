@@ -30,6 +30,10 @@ class Backlight(object):
         # all LED control by PWM
         self.set_register(self.REG_OUTPUT, 0xAA)
 
+    def blinkLed():
+        self.set_register(0x07, 0x17) # blink every seconds
+        self.set_register(0x06, 0x7f) # 50% duty cycle
+
     def set_register(self, addr, value):
         self.i2c.writeto_mem(self.address, addr, value)
 

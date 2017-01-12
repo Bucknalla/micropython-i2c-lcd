@@ -3,8 +3,6 @@
 # This is a port of https://github.com/Seeed-Studio/Grove_LCD_RGB_Backlight
 # (c) 2017 Alex Bucknall <alex.bucknall@gmail.com>
 
-# Screen i2c Address = 0x3E
-
 from machine import I2C
 import time
 
@@ -50,11 +48,8 @@ class Screen(object):
     def __init__(self, i2c, address, oneline=False, charsize=LCD_5x8DOTS):
         i2c.init(I2C.MASTER, baudrate=20000)
 
-        if not isinstance(i2c, I2C):
-            raise TypeError
-
         self.i2c = i2c
-        self.address = int(address)
+        self.address = address
 
         self.disp_func = self.LCD_DISPLAYON # | 0x10
         if not oneline:
@@ -87,48 +82,50 @@ class Screen(object):
 
     def cmd(self, command):
         assert command >= 0 and command < 256
+        command = bytearray([command])
         self.i2c.writeto_mem(self.address, 0x80, command)
 
     def write_char(self, c):
         assert c >= 0 and c < 256
+        c = bytearray([c])
         self.i2c.writeto_mem(self.address, 0x40, c)
 
     def write(self, text):
         for char in text:
             self.write_char(ord(char))
 
-    def cursor(state):
-        if(state):
+    def cursor(self, state):
+        if state:
             self.disp_ctrl |= self.LCD_CURSORON
             self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
-        else():
-            elf.disp_ctrl &= ~self.LCD_CURSORON
+        else:
+            self.disp_ctrl &= ~self.LCD_CURSORON
             self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
 
     def setCursor(self, col, row):
         col = (col | 0x80) if row == 0 else (col | 0xc0)
         self.cmd(col)
 
-    def blink(state):
-        if(state):
+    def blink(self, state):
+        if state:
             self.disp_ctrl |= self.LCD_BLINKON
             self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
-        else():
+        else:
             self.disp_ctrl &= ~self.LCD_BLINKON
             self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
 
-    def display(state):
-        if(state):
+    def display(self, state):
+        if state:
             self.disp_ctrl |= self.LCD_DISPLAYON
             self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
-        else():
+        else:
             self.disp_ctrl &= ~self.LCD_DISPLAYON
             self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
 
     def clear(self):
         self.cmd(self.LCD_CLEARDISPLAY)
-        time.sleep(0.002) # 2ms
+        time.sleep_ms(2) # 2ms
 
     def home(self):
         self.cmd(self.LCD_RETURNHOME)
-        time.sleep(0.002) # 2ms
+        time.sleep_ms(2) # 2m

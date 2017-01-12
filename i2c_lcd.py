@@ -1,5 +1,9 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# This is a port of https://github.com/Seeed-Studio/Grove_LCD_RGB_Backlight
+# (c) 2017 Alex Bucknall <alex.bucknall@gmail.com>
+
 from machine import I2C
-import time
 import i2c_lcd_backlight
 import i2c_lcd_screen
 
@@ -10,14 +14,17 @@ class Display(object):
     i2c = I2C(0, I2C.MASTER)
 
     def __init__(self, i2c):
-        self.backlight = backlight.Backlight(i2c, 0x62)
-        self.screen = screen.Screen(i2c, 0x3e)
+        self.backlight = i2c_lcd_backlight.Backlight(i2c, 0x62)
+        self.screen = i2c_lcd_screen.Screen(i2c, 0x3e)
 
     def write(self, text):
         self.screen.write(text)
 
     def cursor(self, state):
         self.screen.cursor(state)
+
+    def setCursor(self, col, row):
+        self.screen.setCursor(col, row)
 
     def blink(self, state):
         self.screen.blink(state)

@@ -23,14 +23,14 @@ class Display(object):
     def cursor(self, state):
         self.screen.cursor(state)
 
-    def setCursor(self, col, row):
-        self.screen.setCursor(col, row)
-
     def blink(self, state):
         self.screen.blink(state)
 
     def blinkLed(self):
         self.backlight.blinkLed()
+
+    def autoscroll(self, state):
+        self.screen.autoscroll(state)
 
     def display(self, state):
         self.screen.display(state)

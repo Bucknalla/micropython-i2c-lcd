@@ -106,6 +106,14 @@ class Screen(object):
         col = (col | 0x80) if row == 0 else (col | 0xc0)
         self.cmd(col)
 
+    def autoscroll(self, state):
+        if state:
+            self.disp_ctrl |= self.LCD_ENTRYSHIFTINCREMENT
+            self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
+        else:
+            self.disp_ctrl &= ~self.LCD_ENTRYSHIFTINCREMENT
+            self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
+
     def blink(self, state):
         if state:
             self.disp_ctrl |= self.LCD_BLINKON

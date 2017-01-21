@@ -50,7 +50,7 @@ class Screen(object):
         self.i2c = i2c
         self.address = address
 
-		i2c.init(I2C.MASTER, baudrate=20000)
+        i2c.init(I2C.MASTER, baudrate=20000)
 
         self.disp_func = self.LCD_DISPLAYON # | 0x10
         if not oneline:

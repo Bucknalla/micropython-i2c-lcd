@@ -13,9 +13,9 @@ class Display(object):
 
     i2c = I2C(0, I2C.MASTER)
 
-    def __init__(self, i2c):
-        self.backlight = i2c_lcd_backlight.Backlight(i2c, 0x62)
-        self.screen = i2c_lcd_screen.Screen(i2c, 0x3e)
+    def __init__(self, i2c, lcd_add=0x3e, rgb_add=0x62):
+        self.backlight = i2c_lcd_backlight.Backlight(i2c, rgb_add)
+        self.screen = i2c_lcd_screen.Screen(i2c, lcd_add)
 
     def write(self, text):
         self.screen.write(text)

@@ -84,7 +84,9 @@ class Screen(object):
     def cmd(self, command):
         assert command >= 0 and command < 256
         command = bytearray([command])
+        self.i2c.writeto_mem(self.address, 0x80, bytearray([]))
         self.i2c.writeto_mem(self.address, 0x80, command)
+
 
     def write_char(self, c):
         assert c >= 0 and c < 256

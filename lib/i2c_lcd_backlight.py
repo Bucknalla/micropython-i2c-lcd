@@ -36,6 +36,7 @@ class Backlight(object):
 
     def set_register(self, addr, value):
         value = bytearray([value])
+        self.i2c.writeto_mem(self.address, addr, bytearray([]))
         self.i2c.writeto_mem(self.address, addr, value)
 
     def set_color(self, red, green, blue):

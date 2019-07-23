@@ -1,6 +1,6 @@
 # MicroPython I2C 16x2 LCD Screen
 
-This library is designed to support a MicroPython interface for i2c LCD character screens.
+This library is designed to support a MicroPython interface for i2c LCD character screens. It's designed around the Pycom implementation of MicroPython so will need to be tweaked to work for CircuitPython.
 
 ## Compatible LCDs
 - [Grove LCD RGB Backlight](https://www.seeedstudio.com/grove-lcd-rgb-backlight-p-1643.html?cPath=34_36)

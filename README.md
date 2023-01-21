@@ -47,11 +47,15 @@ Moves the cursor to (col,row)
 
 ### color(r, g, b)
 
-On supported Displays (RGB Backlight), changes the color of the LCD Backlight to (r,g,b)
+Only supported by Displays with RGB Backlight.
+Changes the color of the LCD Backlight to (r,g,b)
 
 To use the Grove RGB Display you will need to initialize the Display object
 using also the address of the RGB Backlight module
 
-`my_display = Display(i2c_bus, 0x3e, 0x62)`
+```
+from i2c_lcd import RGBDisplay
+my_display = RGBDisplay(i2c_bus, 0x3e, 0x62)
+```
 
 

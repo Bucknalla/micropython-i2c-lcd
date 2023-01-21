@@ -1,10 +1,11 @@
 # This example only works with Grove RGB Backlight i2c LCD Displays
 
-import i2c_lcd
+from i2c_lcd import RGBDisplay
 from machine import I2C
 
 i2c = I2C(0)
-d = i2c_lcd.Display(i2c, rgb_addr = 0x62)
+
+d = RGBDisplay(i2c)
 
 d.home()
 d.write('Hello World')

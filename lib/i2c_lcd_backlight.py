@@ -1,9 +1,9 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 # This is a port of https://github.com/Seeed-Studio/Grove_LCD_RGB_Backlight
 # (c) 2017 Alex Bucknall <alex.bucknall@gmail.com>
+# 
+# reworked by Ubi de Feo - 2023
 
-# Backlight i2c Address = 0x62
+# Backlight i2c default Address = 0x62
 
 from machine import I2C
 

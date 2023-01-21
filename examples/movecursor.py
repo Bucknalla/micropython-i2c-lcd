@@ -2,11 +2,11 @@
 # - Black on Yellow
 # - RGB Backlight 
 
-import i2c_lcd
+from i2c_lcd import Display
 from machine import I2C
 
 i2c = I2C(0)
-d = i2c_lcd.Display(i2c)
+d = Display(i2c)
 
 d.home()
 d.write('Hello,')

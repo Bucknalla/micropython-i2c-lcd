@@ -1,9 +1,8 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 # This is a port of https://github.com/Seeed-Studio/Grove_LCD_RGB_Backlight
 # (c) 2017 Alex Bucknall <alex.bucknall@gmail.com>
+# 
+# reworked by Ubi de Feo - 2023
 
-from machine import I2C
 import time
 
 class Screen(object):
@@ -49,8 +48,6 @@ class Screen(object):
 
         self.i2c = i2c
         self.address = address
-
-        i2c.init(I2C.MASTER, baudrate=20000)
 
         self.disp_func = self.LCD_DISPLAYON # | 0x10
         if not oneline:

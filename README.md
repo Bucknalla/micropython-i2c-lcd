@@ -48,8 +48,10 @@ Moves the cursor to (col,row)
 ### color(r, g, b)
 
 On supported Displays, color can be changed.
+
 To use the Grove RGB Display you will need to initialize the Display object
 using also the address of the RGB Backlight module
 
 `my_display = Display(i2c_bus, 0x3e, 0x62)`
+
 Changes the color of the LCD Backlight to (r,g,b)

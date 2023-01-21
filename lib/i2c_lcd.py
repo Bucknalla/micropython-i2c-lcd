@@ -11,10 +11,14 @@ class Display(object):
     backlight = None
     screen = None
 
-    i2c = I2C(0, I2C.MASTER)
+    def __init__(self, i2c, lcd_addr=0x3e, rgb_addr = None):
+        # when using an RGB backlight display make sure to specify the address
+        # during the creation of the Display object
+        # 
+        # my_display = Display(i2c_bus, display_addr, rgb_addr)
 
-    def __init__(self, i2c, lcd_addr=0x3e, rgb_addr=0x62):
-        self.backlight = i2c_lcd_backlight.Backlight(i2c, rgb_addr)
+        if rgb_addr != None:
+            self.backlight = i2c_lcd_backlight.Backlight(i2c, rgb_addr)
         self.screen = i2c_lcd_screen.Screen(i2c, lcd_addr)
 
     def write(self, text):
@@ -27,6 +31,8 @@ class Display(object):
         self.screen.blink(state)
 
     def blinkLed(self):
+        if self.backlight == None:
+            return
         self.backlight.blinkLed()
 
     def autoscroll(self, state):
@@ -42,6 +48,8 @@ class Display(object):
         self.screen.home()
 
     def color(self, r, g, b):
+        if self.backlight == None:
+            return
         self.backlight.set_color(r, g, b)
 
     def move(self, col, row):

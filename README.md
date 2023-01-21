@@ -4,12 +4,14 @@ This library is designed to support a MicroPython interface for i2c LCD characte
 
 ## Compatible LCDs
 - [Grove LCD RGB Backlight](https://www.seeedstudio.com/grove-lcd-rgb-backlight-p-1643.html?cPath=34_36)
+- [Grove LCD Black on Yellow](https://www.seeedstudio.com/Grove-16-x-2-LCD-Black-on-Yellow.html)
 
 ## Tested Dev Kits
 
 - LoPy
 - WiPy
 - SiPy
+- Arduino Nano RP2040 Connect
 
 ## Module
 
@@ -45,4 +47,9 @@ Moves the cursor to (col,row)
 
 ### color(r, g, b)
 
+On supported Displays, color can be changed.
+To use the Grove RGB Display you will need to initialize the Display object
+using also the address of the RGB Backlight module
+
+`my_display = Display(i2c_bus, 0x3e, 0x62)`
 Changes the color of the LCD Backlight to (r,g,b)

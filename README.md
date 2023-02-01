@@ -2,9 +2,13 @@
 
 This library is designed to support a MicroPython interface for i2c LCD character screens. It's designed around the Pycom implementation of MicroPython so will need to be tweaked to work for CircuitPython.
 
-## Compatible LCDs
-- [Grove LCD RGB Backlight](https://www.seeedstudio.com/grove-lcd-rgb-backlight-p-1643.html?cPath=34_36)
-- [Grove LCD Black on Yellow](https://www.seeedstudio.com/Grove-16-x-2-LCD-Black-on-Yellow.html)
+## Compatible Displays
+
+![RGB](assets/LCDRGB.jpg)
+[Grove LCD RGB Backlight](https://wiki.seeedstudio.com/Grove-LCD_RGB_Backlight/)
+
+![RGB](assets/LCDMONO.jpg)
+[Grove LCD](https://wiki.seeedstudio.com/Grove-16x2_LCD_Series/)
 
 ## Tested Dev Kits
 
@@ -21,7 +25,7 @@ This module supports writing to, clearing and refreshing the LCD screen, among o
 
 Prints text to LCD screen at the location of the cursor.
 
-### autoscroll(bool)
+### autoscroll(bool) [CURRENTLY NOT WORKING]
 
 Enables lcd to scroll text as typed.
 

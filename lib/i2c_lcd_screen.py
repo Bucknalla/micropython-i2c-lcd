@@ -63,7 +63,7 @@ class Screen(object):
         self.cmd(self.LCD_FUNCTIONSET | self.disp_func)
         time.sleep_us(4500) ##time.sleep(0.0045) # 4.5ms
         self.cmd(self.LCD_FUNCTIONSET | self.disp_func)
-        time.sleep_us(150) ##time.sleep(0.000150) # 150µs = 0.15ms
+        time.sleep_us(150)#time.sleep(0.000150) # 150s = 0.15ms
         self.cmd(self.LCD_FUNCTIONSET | self.disp_func)
         self.cmd(self.LCD_FUNCTIONSET | self.disp_func)
 
@@ -102,7 +102,7 @@ class Screen(object):
             self.disp_ctrl &= ~self.LCD_CURSORON
             self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
 
-    def setCursor(self, col, row):
+    def set_cursor(self, col, row):
         col = (col | 0x80) if row == 0 else (col | 0xc0)
         self.cmd(col)
 
@@ -114,7 +114,7 @@ class Screen(object):
             self.disp_ctrl &= ~self.LCD_ENTRYSHIFTINCREMENT
             self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
 
-    def blink(self, state):
+    def blink(self, state = True):
         if state:
             self.disp_ctrl |= self.LCD_BLINKON
             self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)

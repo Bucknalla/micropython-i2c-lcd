@@ -30,7 +30,7 @@ class Display(object):
     def cursor(self, state):
         self.screen.cursor(state)
 
-    def blink(self, state):
+    def blink_cursor(self, state):
         self.screen.blink(state)
 
     def autoscroll(self, state):
@@ -46,7 +46,7 @@ class Display(object):
         self.screen.home()
 
     def move(self, col, row):
-        self.screen.setCursor(col, row)
+        self.screen.set_cursor(col, row)
 
 class RGBDisplay(Display):
     backlight = None
@@ -58,5 +58,5 @@ class RGBDisplay(Display):
     def color(self, r, g, b):
         self.backlight.set_color(r, g, b)
     
-    def blinkLed(self):
-        self.backlight.blinkLed()
+    def blink_backlight(self, on):
+        self.backlight.blink(on)

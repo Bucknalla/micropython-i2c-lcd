@@ -20,8 +20,9 @@ import i2c_lcd_screen
 
 class Display(object):
     screen = None
+    GROVE_BOY = 0x3e
 
-    def __init__(self, i2c, lcd_addr=0x3e):
+    def __init__(self, i2c, lcd_addr = GROVE_BOY):
         self.screen = i2c_lcd_screen.Screen(i2c, lcd_addr)
 
     def write(self, text):
@@ -49,9 +50,14 @@ class Display(object):
         self.screen.set_cursor(col, row)
 
 class RGBDisplay(Display):
+    # Grove RGB Display versions
+    GROVE_RGB_V4 = (4, 0x62) # version 3-4
+    GROVE_RGB_V5 = (5, 0x30) # version 5 replaced the LED controller
+
     backlight = None
 
-    def __init__(self, i2c, lcd_addr=0x3e, rgb_addr = 0x62):
+    def __init__(self, i2c, lcd_addr=0x3e, display_version = GROVE_RGB_V5):
+        rgb_addr = display_version[1]
         self.backlight = i2c_lcd_backlight.Backlight(i2c, rgb_addr)
         super().__init__(i2c, lcd_addr)
     

@@ -71,6 +71,18 @@ class Backlight(object):
         self.i2c.writeto_mem(self.address, addr, value)
 
     def set_color(self, red, green, blue):
+        if (red, green, blue) == (0, 0, 0):
+          if self.address == self.RGB_ADDRESS_V5:
+            self.set_register(0x04, 0x2a) # attach LEDs to PWM1 to set them off entirely
+            self.set_register(0x02, 0x00) # PWM1 to OFF
+          else:
+            self.set_register(0x06, 0x7f) # PWM to OFF
+        else:
+          if self.address == self.RGB_ADDRESS_V5:
+            self.set_register(0x04, 0x15)
+          else:
+            pass
+        
         self.set_register(self.REG_RED, int(red))
         self.set_register(self.REG_GREEN, int(green))
         self.set_register(self.REG_BLUE, int(blue))

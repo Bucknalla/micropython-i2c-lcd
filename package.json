@@ -1,0 +1,18 @@
+{
+  "urls": [
+    [
+      "lib/i2c_lcd.py",
+      "github:ubidefeo/micropython-i2c-lcd/lib/i2c_lcd.py"
+    ],
+    [
+      "lib/i2c_lcd_backlight.py",
+      "github:ubidefeo/micropython-i2c-lcd/lib/i2c_lcd_backlight.py"
+    ],
+    [
+      "lib/i2c_lcd_screen.py",
+      "github:ubidefeo/micropython-i2c-lcd/lib/i2c_lcd_screen.py"
+    ]
+  ],
+  "deps": [],
+  "version": "2.0.0"
+}

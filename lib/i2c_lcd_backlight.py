@@ -76,7 +76,7 @@ class Backlight(object):
             self.set_register(0x04, 0x2a) # attach LEDs to PWM1 to set them off entirely
             self.set_register(0x02, 0x00) # PWM1 to OFF
           else:
-            self.set_register(0x06, 0x7f) # PWM to OFF
+            self.set_register(0x06, 0x00) # PWM to OFF
         else:
           if self.address == self.RGB_ADDRESS_V5:
             self.set_register(0x04, 0x15)

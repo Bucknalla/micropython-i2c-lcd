@@ -1,20 +1,20 @@
 {
   "urls": [
     [
-      "/lib/micropython_i2c_lcd/__init__.py",
+      "/lib/micropython_i2c_lcd/i2c_lcd/__init__.py",
       "github:ubidefeo/micropython-i2c-lcd/i2c_lcd/__init__.py"
     ],
     [
-      "/lib/micropython_i2c_lcd/i2c_lcd.py",
+      "/lib/micropython_i2c_lcd/i2c_lcd/i2c_lcd.py",
       "github:ubidefeo/micropython-i2c-lcd/i2c_lcd/i2c_lcd.py"
     ],
     [
-      "/lib/micropython_i2c_lcd/i2c_lcd_backlight.py",
-      "github:ubidefeo/micropython-i2c-lcd/i2c_lcd/i2c_lcd_backlight.py"
+      "/lib/micropython_i2c_lcd/i2c_lcd/backlight.py",
+      "github:ubidefeo/micropython-i2c-lcd/i2c_lcd/backlight.py"
     ],
     [
       "/lib/micropython_i2c_lcd/i2c_lcd_screen.py",
-      "github:ubidefeo/micropython-i2c-lcd/i2c_lcd/i2c_lcd_screen.py"
+      "github:ubidefeo/micropython-i2c-lcd/i2c_lcd/screen.py"
     ]
   ],
   "deps": [],

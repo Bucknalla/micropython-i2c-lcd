@@ -13,8 +13,8 @@
 # ******************************************************************************
 
 from machine import I2C
-import i2c_lcd_backlight
-import i2c_lcd_screen
+import .i2c_lcd_backlight
+import .i2c_lcd_screen
 
 
 

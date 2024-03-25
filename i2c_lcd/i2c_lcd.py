@@ -13,8 +13,8 @@
 # ******************************************************************************
 
 from machine import I2C
-import .i2c_lcd_backlight
-import .i2c_lcd_screen
+from .backlight import *
+from .screen import *
 
 
 
@@ -23,7 +23,7 @@ class Display(object):
     GROVE_BOY = 0x3e
 
     def __init__(self, i2c, lcd_addr = GROVE_BOY):
-        self.screen = i2c_lcd_screen.Screen(i2c, lcd_addr)
+        self.screen = Screen(i2c, lcd_addr)
 
     def write(self, text):
         self.screen.write(text)
@@ -58,7 +58,7 @@ class RGBDisplay(Display):
 
     def __init__(self, i2c, lcd_addr=0x3e, display_version = GROVE_RGB_V5):
         rgb_addr = display_version[1]
-        self.backlight = i2c_lcd_backlight.Backlight(i2c, rgb_addr)
+        self.backlight = Backlight(i2c, rgb_addr)
         super().__init__(i2c, lcd_addr)
     
     def color(self, r, g, b):

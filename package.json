@@ -1,6 +1,10 @@
 {
   "urls": [
     [
+      "/lib/micropython_i2c_lcd/__init__.py",
+      "github:ubidefeo/micropython-i2c-lcd/micropython_i2c_lcd/__init__.py"
+    ],
+    [
       "/lib/micropython_i2c_lcd/i2c_lcd.py",
       "github:ubidefeo/micropython-i2c-lcd/micropython_i2c_lcd/i2c_lcd.py"
     ],

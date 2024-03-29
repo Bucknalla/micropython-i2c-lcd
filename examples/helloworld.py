@@ -9,4 +9,6 @@ i2c = I2C(0)
 d = i2c_lcd.Display(i2c)
 
 d.home()
-d.write('Hello World')
+d.write('Hello, World!')
+d.move(0,1)
+d.write('How are you?')

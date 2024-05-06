@@ -7,10 +7,11 @@
 
 from machine import I2C
 
+
 class Backlight(object):
-    REG_RED = 0x04 # pwm2
-    REG_GREEN = 0x03 # pwm1
-    REG_BLUE = 0x02 # pwm0
+    REG_RED = 0x04  # pwm2
+    REG_GREEN = 0x03  # pwm1
+    REG_BLUE = 0x02  # pwm0
 
     REG_MODE1 = 0x00
     REG_MODE2 = 0x01
@@ -31,8 +32,8 @@ class Backlight(object):
         self.set_register(self.REG_OUTPUT, 0xAA)
 
     def blinkLed(self):
-        self.set_register(0x07, 0x17) # blink every seconds
-        self.set_register(0x06, 0x7f) # 50% duty cycle
+        self.set_register(0x07, 0x17)  # blink every seconds
+        self.set_register(0x06, 0x7F)  # 50% duty cycle
 
     def set_register(self, addr, value):
         value = bytearray([value])

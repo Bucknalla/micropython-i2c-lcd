@@ -7,13 +7,14 @@ from machine import I2C
 import i2c_lcd_backlight
 import i2c_lcd_screen
 
+
 class Display(object):
     backlight = None
     screen = None
 
-    i2c = I2C(0, I2C.MASTER)
+    i2c = I2C(0)
 
-    def __init__(self, i2c, lcd_addr=0x3e, rgb_addr=0x62):
+    def __init__(self, i2c, lcd_addr=0x3E, rgb_addr=0x62):
         self.backlight = i2c_lcd_backlight.Backlight(i2c, rgb_addr)
         self.screen = i2c_lcd_screen.Screen(i2c, lcd_addr)
 

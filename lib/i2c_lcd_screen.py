@@ -6,6 +6,7 @@
 from machine import I2C
 import time
 
+
 class Screen(object):
     # commands
     LCD_CLEARDISPLAY = 0x01
@@ -50,9 +51,7 @@ class Screen(object):
         self.i2c = i2c
         self.address = address
 
-        i2c.init(I2C.MASTER, baudrate=20000)
-
-        self.disp_func = self.LCD_DISPLAYON # | 0x10
+        self.disp_func = self.LCD_DISPLAYON  # | 0x10
         if not oneline:
             self.disp_func |= self.LCD_2LINE
         elif charsize != 0:
@@ -60,13 +59,13 @@ class Screen(object):
             self.disp_func |= self.LCD_5x10DOTS
 
         # wait for display init after power-on
-        time.sleep_ms(50) # 50ms
+        time.sleep_ms(50)  # 50ms
 
         # send function set
         self.cmd(self.LCD_FUNCTIONSET | self.disp_func)
-        time.sleep_us(4500) ##time.sleep(0.0045) # 4.5ms
+        time.sleep_us(4500)  ##time.sleep(0.0045) # 4.5ms
         self.cmd(self.LCD_FUNCTIONSET | self.disp_func)
-        time.sleep_us(150) ##time.sleep(0.000150) # 150µs = 0.15ms
+        time.sleep_us(150)  ##time.sleep(0.000150) # 150µs = 0.15ms
         self.cmd(self.LCD_FUNCTIONSET | self.disp_func)
         self.cmd(self.LCD_FUNCTIONSET | self.disp_func)
 
@@ -87,7 +86,6 @@ class Screen(object):
         self.i2c.writeto_mem(self.address, 0x80, bytearray([]))
         self.i2c.writeto_mem(self.address, 0x80, command)
 
-
     def write_char(self, c):
         assert c >= 0 and c < 256
         c = bytearray([c])
@@ -100,43 +98,43 @@ class Screen(object):
     def cursor(self, state):
         if state:
             self.disp_ctrl |= self.LCD_CURSORON
-            self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
+            self.cmd(self.LCD_DISPLAYCONTROL | self.disp_ctrl)
         else:
             self.disp_ctrl &= ~self.LCD_CURSORON
-            self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
+            self.cmd(self.LCD_DISPLAYCONTROL | self.disp_ctrl)
 
     def setCursor(self, col, row):
-        col = (col | 0x80) if row == 0 else (col | 0xc0)
+        col = (col | 0x80) if row == 0 else (col | 0xC0)
         self.cmd(col)
 
     def autoscroll(self, state):
         if state:
             self.disp_ctrl |= self.LCD_ENTRYSHIFTINCREMENT
-            self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
+            self.cmd(self.LCD_DISPLAYCONTROL | self.disp_ctrl)
         else:
             self.disp_ctrl &= ~self.LCD_ENTRYSHIFTINCREMENT
-            self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
+            self.cmd(self.LCD_DISPLAYCONTROL | self.disp_ctrl)
 
     def blink(self, state):
         if state:
             self.disp_ctrl |= self.LCD_BLINKON
-            self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
+            self.cmd(self.LCD_DISPLAYCONTROL | self.disp_ctrl)
         else:
             self.disp_ctrl &= ~self.LCD_BLINKON
-            self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
+            self.cmd(self.LCD_DISPLAYCONTROL | self.disp_ctrl)
 
     def display(self, state):
         if state:
             self.disp_ctrl |= self.LCD_DISPLAYON
-            self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
+            self.cmd(self.LCD_DISPLAYCONTROL | self.disp_ctrl)
         else:
             self.disp_ctrl &= ~self.LCD_DISPLAYON
-            self.cmd(self.LCD_DISPLAYCONTROL  | self.disp_ctrl)
+            self.cmd(self.LCD_DISPLAYCONTROL | self.disp_ctrl)
 
     def clear(self):
         self.cmd(self.LCD_CLEARDISPLAY)
-        time.sleep_ms(2) # 2ms
+        time.sleep_ms(2)  # 2ms
 
     def home(self):
         self.cmd(self.LCD_RETURNHOME)
-        time.sleep_ms(2) # 2m
+        time.sleep_ms(2)  # 2m

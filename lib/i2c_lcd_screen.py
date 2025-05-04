@@ -108,11 +108,11 @@ class Screen(object):
 
     def autoscroll(self, state):
         if state:
-            self.disp_ctrl |= self.LCD_ENTRYSHIFTINCREMENT
-            self.cmd(self.LCD_DISPLAYCONTROL | self.disp_ctrl)
+            self.disp_mode |= self.LCD_ENTRYSHIFTINCREMENT
+            self.cmd(self.LCD_ENTRYMODESET | self.disp_mode)
         else:
-            self.disp_ctrl &= ~self.LCD_ENTRYSHIFTINCREMENT
-            self.cmd(self.LCD_DISPLAYCONTROL | self.disp_ctrl)
+            self.disp_mode &= ~self.LCD_ENTRYSHIFTINCREMENT
+            self.cmd(self.LCD_ENTRYMODESET | self.disp_mode)
 
     def blink(self, state):
         if state:
